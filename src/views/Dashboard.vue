@@ -1,9 +1,24 @@
 <script setup>
-import HelloWorld from './../components/HelloWorld.vue'
+import Heater from '../components/Heater.vue';
+import Ventilator from '../components/Ventilator.vue';
+import Alarm from '../components/Alarm.vue';
+import ControlPanel from '../components/ControlPanel.vue';
 </script>
 <template>
-    <div>
-        <img alt="Vue logo" src="./../assets/logo.png" />
-        <HelloWorld msg="Hello Vue 3 + Vite" />
+    <div class="h-full grid grid-rows-1 grid-cols-[480px_1fr]">
+        <div class="h-full">
+            <ControlPanel />
+        </div>
+        <div class="h-full grid grid-rows-[1fr_2fr] grid-cols-2 bg-gray-200">
+            <div class="row-span-full flex items-end">
+                <Heater class="mx-auto" />
+            </div>
+            <div class="flex items-center">
+                <Alarm class="mx-auto" fill="red" />
+            </div>
+            <div>
+                <Ventilator class="mx-auto" />
+            </div>
+        </div>
     </div>
 </template>
