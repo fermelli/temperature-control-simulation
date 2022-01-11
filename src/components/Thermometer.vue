@@ -1,11 +1,39 @@
+<script setup>
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const maxScale = ref(50);
+
+const store = useStore();
+
+const maximumTemperature = computed(() => store.state.maximumTemperature);
+const heightMarker = computed(() => (currentTemperature.value / maxScale.value) * 100 + '%');
+const currentTemperature = computed(() => store.state.currentTemperature);
+const styles = computed(() => {
+    return {
+        background: 'rgb(28, 207, 67)',
+        background: `linear-gradient(
+        0deg,
+        rgb(28, 207, 67) 0%,
+        rgba(248, 187, 25, 1) ${((maximumTemperature.value / 2) / maxScale.value) * 100}%,
+        rgba(255, 0, 0, 1) ${(maximumTemperature.value / maxScale.value) * 100}%`
+    }
+});
+
+</script>
+
 <template>
     <div class="flex justify-center gap-x-4 h-[600px]">
         <div class="relative">
-            <div class="sprite-thermometer"></div>
+            <div class="sprite-thermometer" :style="styles"></div>
             <div
                 class="marker absolute w-full border-t-4 bottom-0 border-t-slate-800"
-                style="height: 85%;"
-            ></div>
+                :style="{ height: heightMarker }"
+            >
+                <div
+                    class="relative w-full text-center whitespace-nowrap font-bold text-slate-800"
+                >{{ currentTemperature.toFixed(2) }}</div>
+            </div>
         </div>
         <div class="marks">
             <div class="mark" v-for="i in 50" :key="i"></div>
@@ -13,26 +41,10 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 .sprite-thermometer {
     width: 40px;
     height: 100%;
-    background: rgb(28, 207, 67);
-    background: linear-gradient(
-        0deg,
-        rgb(28, 207, 67) 0%,
-        rgba(248, 187, 25, 1) 50%,
-        rgba(255, 0, 0, 1) 100%
-    );
-}
-
-.marker::before {
-    content: "42.5°";
-    position: absolute;
-    top: 0;
-    right: calc(100% + 10px);
-    text-align: right;
-    transform: translateY(-50%);
 }
 
 .marks {

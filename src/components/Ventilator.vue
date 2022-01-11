@@ -1,6 +1,17 @@
 <script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import SpriteBlades from './sprites/SpriteBlades.vue';
 import SpriteGrill from './sprites/SpriteGrill.vue';
+
+const store = useStore();
+
+const turnOnVentilator = computed(() => store.state.turnOnVentilator);
+
+const animation = computed(() => {
+    return turnOnVentilator.value ? 'rotor 0.7s linear infinite' : ''
+});
+
 </script>
 <template>
     <div class="ventilator p-8 rounded bg-white shadow">
@@ -10,11 +21,23 @@ import SpriteGrill from './sprites/SpriteGrill.vue';
             <div class="heatsink"></div>
         </div>
         <div class="airhole">
-            <SpriteBlades />
+            <SpriteBlades :style="{ animation: animation }" />
             <SpriteGrill class="grill" />
         </div>
     </div>
 </template>
+
+<style>
+@keyframes rotor {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>
 
 <style scoped>
 .ventilator {

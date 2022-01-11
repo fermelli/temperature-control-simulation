@@ -28,7 +28,7 @@
 
 <style scoped>
 .sprite-fire {
-    /* animation: flames 1s ease-in infinite; */
+    animation: flames 1s ease-in infinite;
     transform-origin: center bottom;
     transform: translateX(-50%);
 }
@@ -39,7 +39,7 @@
     }
 
     100% {
-        transform: translateX(-50%) scale(1.08);
+        transform: translateX(-50%) scale(1.05);
     }
 }
 </style>

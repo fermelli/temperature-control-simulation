@@ -16,16 +16,5 @@
 .blades {
     width: 100%;
     border-radius: 50%;
-    /* animation: rotor 2s linear infinite; */
-}
-
-@keyframes rotor {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }
 </style>
