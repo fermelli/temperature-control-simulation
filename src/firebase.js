@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAl7A7JrEWkKlRUki1kFoYgWXgMbxhGL7k',
-	authDomain: 'simulation-42d1a.firebaseapp.com',
-	databaseURL: 'https://simulation-42d1a-default-rtdb.firebaseio.com',
-	projectId: 'simulation-42d1a',
-	storageBucket: 'simulation-42d1a.appspot.com',
-	messagingSenderId: '620855862097',
-	appId: '1:620855862097:web:354d03591f87f849e66970',
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+	databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
