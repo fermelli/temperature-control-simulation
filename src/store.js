@@ -13,6 +13,9 @@ const store = createStore({
 			turnOnVentilator: false,
 			timeOn: 0,
 			timeFrame: 100,
+			timeGreen: 0,
+			timeYellow: 0,
+			timeRed: 0,
 		};
 	},
 	mutations: {
@@ -44,7 +47,7 @@ const store = createStore({
 		updateTimeOn(state, timeOn) {
 			state.timeOn = timeOn;
 		},
-		updateTimeOn(state, timeFrame) {
+		updateTimeFrame(state, timeFrame) {
 			state.timeFrame = timeFrame;
 		},
 		resetSimulation(state) {
@@ -57,6 +60,19 @@ const store = createStore({
 			state.currentTime = 0;
 			state.turnOnVentilator = false;
 			state.timeOn = 0;
+			state.timeFrame = 100;
+			state.timeGreen = 0;
+			state.timeYellow = 0;
+			state.timeRed = 0;
+		},
+		updateTimeGreen(state) {
+			state.timeGreen = state.currentTime;
+		},
+		updateTimeYellow(state) {
+			state.timeYellow = state.currentTime;
+		},
+		updateTimeRed(state) {
+			state.timeRed = state.currentTime;
 		},
 	},
 	actions: {
@@ -87,7 +103,7 @@ const store = createStore({
 		updateTimeOn({ commit }, timeOn) {
 			commit('updateTimeOn', timeOn);
 		},
-		updateTimeOn({ commit }, timeFrame) {
+		updateTimeFrame({ commit }, timeFrame) {
 			commit('updateTimeFrame', timeFrame);
 		},
 		resetSimulation({ commit }) {

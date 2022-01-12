@@ -10,7 +10,7 @@ const heaterTemperature = computed(() => store.state.heaterTemperature);
 const styles = computed(() => {
     return {
         bottom: `${33 - (heaterTemperature.value / 50)}%`,
-        width: heaterTemperature.value == 0 ? '0%' : `${heaterTemperature.value}%`,
+        width: heaterTemperature.value == 0 ? '0%' : `${heaterTemperature.value * 0.6}%`,
     }
 });
 

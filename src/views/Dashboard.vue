@@ -3,11 +3,12 @@ import Heater from '../components/Heater.vue';
 import Ventilator from '../components/Ventilator.vue';
 import Alarm from '../components/Alarm.vue';
 import ControlPanel from '../components/ControlPanel.vue';
+import RightPanel from '../components/RightPanel.vue';
 
 </script>
 
 <template>
-    <div class="h-full grid grid-rows-1 grid-cols-[480px_1fr]">
+    <div class="h-full grid grid-rows-1 grid-cols-[480px_1fr_320px]">
         <div class="h-full">
             <ControlPanel />
         </div>
@@ -21,6 +22,9 @@ import ControlPanel from '../components/ControlPanel.vue';
             <div>
                 <Ventilator class="mx-auto" />
             </div>
+        </div>
+        <div class="h-full">
+            <RightPanel />
         </div>
     </div>
 </template>

@@ -57,7 +57,14 @@ const constantK = computed({
     }
 });
 
-const currentTemperature = computed(() => store.state.currentTemperature);
+const currentTemperature = computed({
+    get: () => {
+        return store.state.currentTemperature
+    },
+    set: (value) => {
+        store.dispatch('updateCurrentTemperature', value)
+    }
+});
 
 const currentTime = computed({
     get: () => {
@@ -111,8 +118,8 @@ const initSimulation = (e) => {
             turnOnVentilator.value = false
         }
 
-        let C
-        let temperature
+        let C;
+        let temperature;
 
         if (turnOnVentilator.value) {
             timeOn.value += timeFrame.value
@@ -126,7 +133,7 @@ const initSimulation = (e) => {
                 Math.E ** (-constantK.value * (currentTime.value / 1000))
         }
 
-        store.dispatch('updateCurrentTemperature', temperature)
+        currentTemperature.value = temperature;
 
         currentTime.value += timeFrame.value;
 
@@ -160,7 +167,7 @@ const resetSimulation = (e) => {
                             <span
                                 class="font-bold"
                             >{{ heaterTemperature }}</span>
-                            )
+                            ) [° C]
                         </label>
                         <input
                             class="h-9 w-full rounded outline-none border"
@@ -232,7 +239,7 @@ const resetSimulation = (e) => {
                         class="h-10 w-full px-4 my-2 py-1 rounded-full bg-[#0c2f3f] uppercase text-white font-semibold cursor-pointer hover:bg-[#103e53] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
                         type="submit"
                         value="Iniciar simulación"
-                        :disabled="!isActive"
+                        :disabled="!isActive || currentTemperature != roomTemperature"
                     />
                     <input
                         class="h-10 w-full px-4 my-2 py-1 rounded-full uppercase text-gray-500 font-semibold cursor-pointer border border-gray-500 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-none"
@@ -242,7 +249,7 @@ const resetSimulation = (e) => {
                     />
                 </form>
                 <div class="p-4 my-4 text-center">
-                    <h3>Tiempo simulando</h3>
+                    <h4>Tiempo simulando</h4>
                     <span class="block text-5xl">{{ Math.trunc(currentTime / 1000) }}</span>
                     <span class="block text-3xl">segundos</span>
                 </div>

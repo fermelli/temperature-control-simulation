@@ -14,7 +14,7 @@ const animation = computed(() => {
 
 </script>
 <template>
-    <div class="ventilator p-8 rounded bg-white shadow">
+    <div class="ventilator px-6 py-8 rounded bg-white shadow">
         <div class="heatsinks">
             <div class="heatsink"></div>
             <div class="heatsink"></div>
@@ -41,9 +41,8 @@ const animation = computed(() => {
 
 <style scoped>
 .ventilator {
-    width: 320px;
+    max-width: 320px;
 }
-
 .heatsinks {
     display: flex;
     flex-direction: column;

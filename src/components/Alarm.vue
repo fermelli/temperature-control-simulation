@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useStore } from 'vuex';
 import SpriteAlarm from './sprites/SpriteAlarm.vue';
 
@@ -27,7 +27,15 @@ const alarmColor = computed(() => {
     } else {
         return 'red'
     }
+});
 
+watch(alarmColor, (color, prevColor) => {
+    if (color == 'green')
+        store.commit('updateTimeGreen')
+    if (color == '#f6d015')
+        store.commit('updateTimeYellow')
+    if (color == 'red')
+        store.commit('updateTimeRed')
 });
 
 
