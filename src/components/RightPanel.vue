@@ -34,12 +34,12 @@ const timeRed = computed(() => store.state.timeRed);
         <div>
             <h4>Ventilador</h4>
             <span
-                class="flex justify-center items-center h-10 w-10 rounded-full bg-green-600 text-white font-semibold shadow-lg cursor-pointer my-2"
+                class="flex justify-center items-center h-8 w-16 rounded-full bg-green-600 text-white font-semibold shadow-lg cursor-pointer my-2"
                 v-if="turnOnVentilator"
                 @click="turnOnVentilator = false"
             >ON</span>
             <span
-                class="flex justify-center items-center h-10 w-10 rounded-full bg-red-600 text-white font-semibold shadow-lg cursor-pointer my-2"
+                class="flex justify-center items-center h-8 w-16 rounded-full bg-red-600 text-white font-semibold shadow-lg cursor-pointer my-2"
                 v-else
                 @click="turnOnVentilator = true"
             >OFF</span>

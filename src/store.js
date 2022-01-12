@@ -1,4 +1,4 @@
-import { push, ref, set } from 'firebase/database';
+import { child, get, push, ref, set } from 'firebase/database';
 import { createStore } from 'vuex';
 import db from './firebase';
 import { uuid } from './utils';
@@ -20,6 +20,7 @@ const store = createStore({
 			timeGreen: 0,
 			timeYellow: 0,
 			timeRed: 0,
+			simulations: {},
 		};
 	},
 	mutations: {
@@ -87,6 +88,9 @@ const store = createStore({
 		},
 		saveFinalData() {
 			console.log('datos finales');
+		},
+		getSimulations(state, simulations) {
+			state.simulations = simulations;
 		},
 	},
 	actions: {
@@ -201,6 +205,20 @@ const store = createStore({
 			set(reference3, timeOn);
 
 			commit('saveFinalData');
+		},
+		getSimulations({ commit }) {
+			const dbRef = ref(db, 'simulations');
+			get(child(dbRef, '/'))
+				.then((snapshot) => {
+					if (snapshot.exists()) {
+						commit('getSimulations', snapshot.val());
+					} else {
+						console.log('No data available');
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		},
 	},
 });
