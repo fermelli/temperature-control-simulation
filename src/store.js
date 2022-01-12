@@ -20,7 +20,8 @@ const store = createStore({
 			timeGreen: 0,
 			timeYellow: 0,
 			timeRed: 0,
-			simulations: {},
+			simulations: null,
+			selectedId: null,
 		};
 	},
 	mutations: {
@@ -91,6 +92,9 @@ const store = createStore({
 		},
 		getSimulations(state, simulations) {
 			state.simulations = simulations;
+		},
+		selectedId(state, id) {
+			state.selectedId = id;
 		},
 	},
 	actions: {
@@ -219,6 +223,13 @@ const store = createStore({
 				.catch((error) => {
 					console.error(error);
 				});
+		},
+	},
+	getters: {
+		getSimulationById: (state) => {
+			return state.simulations && state.selectedId
+				? state.simulations[state.selectedId]
+				: null;
 		},
 	},
 });

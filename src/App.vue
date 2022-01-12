@@ -2,7 +2,7 @@
     <div class="h-screen">
         <router-view></router-view>
         <router-link
-            class="absolute bottom-4 right-4 h-16 w-16 rounded-full bg-white border-2 border-slate-800 flex justify-center items-center"
+            class="absolute bottom-4 right-4 h-16 w-16 rounded-full bg-white border-2 border-slate-800 flex justify-center items-center hover:bg-gray-100"
             :to="{ name: 'dashboard' }"
             title="Panel de control"
         >
@@ -11,7 +11,7 @@
             </svg>
         </router-link>
         <router-link
-            class="absolute bottom-24 right-4 h-16 w-16 rounded-full bg-white border-2 border-slate-800 flex justify-center items-center"
+            class="absolute bottom-24 right-4 h-16 w-16 rounded-full bg-white border-2 border-slate-800 flex justify-center items-center hover:bg-gray-100"
             :to="{ name: 'data' }"
             title="Datos"
         >
