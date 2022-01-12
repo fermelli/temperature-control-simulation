@@ -8,6 +8,7 @@
 		"tailwindcss": "npx tailwindcss -i ./src/assets/css/styles.css -o ./public/styles.css --watch"
 	},
 	"dependencies": {
+		"firebase": "^9.6.2",
 		"vue": "^3.2.25",
 		"vue-router": "^4.0.12",
 		"vuex": "^4.0.2"
