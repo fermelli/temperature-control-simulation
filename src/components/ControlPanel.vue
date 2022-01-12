@@ -102,11 +102,15 @@ const timeFrame = computed({
     }
 });
 
+const simulationId = computed(() => store.state.id)
+
 const initSimulation = (e) => {
     currentTime.value = 0;
     timeOn.value = 0;
     isActive.value = false;
     turnOnVentilator.value = false
+
+    store.dispatch('saveSimulation');
 
     let intervalId = setInterval(() => {
 
@@ -135,12 +139,15 @@ const initSimulation = (e) => {
 
         currentTemperature.value = temperature;
 
+        store.dispatch('saveMeasurement')
+
         currentTime.value += timeFrame.value;
 
         if (currentTime.value >= simulationTime.value * 1000) {
             clearInterval(intervalId)
             isActive.value = true;
             turnOnVentilator.value = false
+            store.dispatch('saveFinalData')
         }
 
     }, timeFrame.value);
@@ -189,7 +196,7 @@ const resetSimulation = (e) => {
                             placeholder="Temperatura máxima"
                             min="0"
                             step="0.01"
-                            max="50"
+                            :max="heaterTemperature"
                             v-model="maximumTemperature"
                         />
                     </div>

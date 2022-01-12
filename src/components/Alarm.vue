@@ -31,11 +31,11 @@ const alarmColor = computed(() => {
 
 watch(alarmColor, (color, prevColor) => {
     if (color == 'green')
-        store.commit('updateTimeGreen')
+        store.dispatch('updateTimeGreen')
     if (color == '#f6d015')
-        store.commit('updateTimeYellow')
+        store.dispatch('updateTimeYellow')
     if (color == 'red')
-        store.commit('updateTimeRed')
+        store.dispatch('updateTimeRed')
 });
 
 
