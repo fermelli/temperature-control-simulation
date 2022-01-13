@@ -82,13 +82,13 @@ const store = createStore({
 		},
 		saveSimulation(state, id) {
 			state.id = id;
-			console.log('guardado ' + id);
+			console.log('Simulación guardada ' + id);
 		},
 		saveMeasurement() {
-			console.log('medida guardada');
+			console.log('Medida guardada');
 		},
 		saveFinalData() {
-			console.log('datos finales');
+			console.log('Datos finales');
 		},
 		getSimulations(state, simulations) {
 			state.simulations = simulations;

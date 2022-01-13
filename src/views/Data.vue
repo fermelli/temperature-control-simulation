@@ -41,7 +41,7 @@ store.dispatch('getSimulations');
                 <router-link
                     class="link flex justify-center items-center h-8 w-8 rounded-full bg-white hover:bg-slate-800"
                     :to="{ name: 'detail', params: { id: id } }"
-                    title="Datos"
+                    title="Detalle simulación"
                 >
                     <svg class="fill-slate-80" width="24px" height="24px">
                         <use v-bind="{ 'xlink:href': '/feather-sprite.svg#' + 'open' }" />
